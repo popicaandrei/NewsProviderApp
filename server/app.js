@@ -1,15 +1,24 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv/config')
 
 app.listen(3001);
-const newsRoute = require('./routes/news');
 app.use(cors());
-app.use('/news', newsRoute);
-app.use(bodyParser.json());
+app.use(express.json());
+require('dotenv/config');
 
-//connect to db
-mongoose.connect(process.env.DB_CONNECTION,() => console.log("connected"));
+const newsRoute = require('./routes/news');
+const authRoute = require('./routes/auth');
+
+app.use('/api/news', newsRoute);
+app.use('/api/user', authRoute);
+
+mongoose
+  .connect(process.env.DB_CONNECTION, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(() => console.log("Database connected!"))
+  .catch((err) => console.log(err));
