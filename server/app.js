@@ -8,11 +8,13 @@ app.use(cors());
 app.use(express.json());
 require('dotenv/config');
 
-const newsRoute = require('./routes/news');
 const authRoute = require('./routes/auth');
+const newsRoute = require('./routes/news');
+const notesRoute = require('./routes/notes');
 
 app.use('/api/news', newsRoute);
 app.use('/api/user', authRoute);
+app.use('/api/notes', notesRoute)
 
 mongoose
   .connect(process.env.DB_CONNECTION, {
