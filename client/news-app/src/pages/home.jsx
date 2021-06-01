@@ -2,11 +2,12 @@ import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import './home.scss';
 import {GetNewsBySubject,GetHeadlines} from '../services/NewsService'
-
+import {NewsCard} from '../components/NewsCard'
 
 
 export function HomePage(props) {
   const [topic, setTopic] = useState("");
+  const [news, setNews] = useState([]);
   
   const checkBySelection = async () => {
     if (topic !== ""){
@@ -14,7 +15,8 @@ export function HomePage(props) {
         category:topic
       };
       var data = await GetHeadlines(query);
-      console.log(data);
+      console.log(data.articles);
+      setNews(data.articles);
     }
     else{
       alert("Topic invalid!");
@@ -46,6 +48,14 @@ export function HomePage(props) {
         <TextField id="standard-basic" label="Standard" />
         </div>
         
+        </div>
+
+        <div className="recipient">
+          {news.map(x => 
+           <NewsCard className="card-grid" item={x}>
+
+           </NewsCard>
+            )}
         </div>
        
   </div> 
