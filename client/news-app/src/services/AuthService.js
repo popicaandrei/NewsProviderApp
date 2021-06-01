@@ -1,6 +1,5 @@
 import axios from 'axios'
 import jwt_decode from 'jwt-decode';
-import react from 'react';
 
 const basePath = "http://localhost:3001/"
 
@@ -14,35 +13,35 @@ export async function Login(email, password) {
         localStorage.setItem("jwt", response?.data["auth-token"]);
         return true;
     }
-    catch (e){
+    catch (e) {
         return false;
     };
 
 }
 
-export function IsUserLoggedIn(){
+export function IsUserLoggedIn() {
     let jwt = localStorage.getItem("jwt");
-    if(jwt === null)
-      return false;
+    if (jwt === null)
+        return false;
     return true;
-  }
-  
-  
-  export function GetUserName(){
+}
+
+
+export function GetUserName() {
     let jwt = DecodeJwt()
     return jwt.name;
-  }
-  
-  export function GetUserId(){
+}
+
+export function GetUserId() {
     let jwt = DecodeJwt()
     return jwt._id;
-  }
-  
-  
-  export function GetEmail(){
+}
+
+
+export function GetEmail() {
     let jwt = DecodeJwt()
     return jwt.email;
-  }
-  export function DecodeJwt(){
+}
+export function DecodeJwt() {
     return jwt_decode(localStorage.getItem("jwt"));
-  }
+}

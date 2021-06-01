@@ -119,61 +119,61 @@ const expandingTransition = {
 };
 
 export function AccountBox(props) {
-   const [isExpanded, setExpanded] = useState(false); //used for determine which state component is currently in
-   const [active, setActive] = useState('signin'); //used for determine which form should be loaded
+  const [isExpanded, setExpanded] = useState(false); //used for determine which state component is currently in
+  const [active, setActive] = useState('signin'); //used for determine which form should be loaded
 
-   const playExpandingAnimation = () => {
-     setExpanded(true);
-     setTimeout(() => {
-       setExpanded(false);
-     },expandingTransition.duration * 1000 - 1500)  //building the transition
-   }
-
-   const switchToSignUp = () =>{
-     playExpandingAnimation();
-     setTimeout(() => {
-      setActive("signup");
-    },400) // wait for the animation between switching states and rerender
-   }
-
-   const switchToSignIn = () =>{
-    playExpandingAnimation();
+  const playExpandingAnimation = () => {
+    setExpanded(true);
     setTimeout(() => {
-     setActive("signin");
-   },400) // wait for the animation between switching states and rerender
+      setExpanded(false);
+    }, expandingTransition.duration * 1000 - 1500)  //building the transition
   }
 
-const contextValue = {switchToSignUp,switchToSignIn};
+  const switchToSignUp = () => {
+    playExpandingAnimation();
+    setTimeout(() => {
+      setActive("signup");
+    }, 400) // wait for the animation between switching states and rerender
+  }
 
-    return (
+  const switchToSignIn = () => {
+    playExpandingAnimation();
+    setTimeout(() => {
+      setActive("signin");
+    }, 400) // wait for the animation between switching states and rerender
+  }
+
+  const contextValue = { switchToSignUp, switchToSignIn };
+
+  return (
     <AppContainer>
-    <AccountContext.Provider value={contextValue}>
-    <BoxContainer>
-        <TopContainer>
-            <BackDrop 
-            initial={false} 
-            animate={isExpanded? 'expanded' : 'collapsed'}
-            variants={backdropVariants}
-            transition={expandingTransition}
+      <AccountContext.Provider value={contextValue}>
+        <BoxContainer>
+          <TopContainer>
+            <BackDrop
+              initial={false}
+              animate={isExpanded ? 'expanded' : 'collapsed'}
+              variants={backdropVariants}
+              transition={expandingTransition}
             />
             {active === "signin" && <HeaderContainer>
-                <HeaderText>Welcome</HeaderText>
-                <HeaderText>Back</HeaderText>
-                <SmallText>Please sign-in to continue</SmallText>
-                </HeaderContainer>
+              <HeaderText>Welcome</HeaderText>
+              <HeaderText>Back</HeaderText>
+              <SmallText>Please sign-in to continue</SmallText>
+            </HeaderContainer>
             }
             {active === "signup" && <HeaderContainer>
-                <HeaderText>Create</HeaderText>
-                <HeaderText>Account</HeaderText>
-                <SmallText>Please sign-up to continue</SmallText>
-                </HeaderContainer>
+              <HeaderText>Create</HeaderText>
+              <HeaderText>Account</HeaderText>
+              <SmallText>Please sign-up to continue</SmallText>
+            </HeaderContainer>
             }
-        </TopContainer>
-        <InnerContainer>
-         {active === "signin" && <LoginForm />}
-         {active === "signup" && <SignUpForm />}
-        </InnerContainer>
-    </BoxContainer>
-    </AccountContext.Provider>
+          </TopContainer>
+          <InnerContainer>
+            {active === "signin" && <LoginForm />}
+            {active === "signup" && <SignUpForm />}
+          </InnerContainer>
+        </BoxContainer>
+      </AccountContext.Provider>
     </AppContainer>);
 }

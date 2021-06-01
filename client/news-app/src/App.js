@@ -6,7 +6,6 @@ import {
   Redirect
 } from "react-router-dom";
 import './App.css';
-import styled from "styled-components"
 import { AccountBox } from './Unauthenticated/index';
 import { IsUserLoggedIn } from './services/AuthService'
 
