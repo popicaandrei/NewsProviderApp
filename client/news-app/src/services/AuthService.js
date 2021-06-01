@@ -19,6 +19,23 @@ export async function Login(email, password) {
 
 }
 
+export async function Register(email, password, username) {
+    let path = basePath + "api/user/register";
+    try {
+        let response = await axios.post(path, {
+            name: username,
+            email: email,
+            password: password
+        });
+        localStorage.setItem("jwt", response?.data["auth-token"]);
+        return true;
+    }
+    catch (e) {
+        return false;
+    };
+
+}
+
 export function IsUserLoggedIn() {
     let jwt = localStorage.getItem("jwt");
     if (jwt === null)

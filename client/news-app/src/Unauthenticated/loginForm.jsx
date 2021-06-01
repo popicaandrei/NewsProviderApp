@@ -9,18 +9,16 @@ import { useHistory} from 'react-router-dom'
 export function LoginForm(props) {
 
   const { switchToSignUp } = useContext(AccountContext);
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
 
-  const getLoginData = async () => {
-    console.log(Email);
-    console.log(Password);
-    var response = await Login(Email, Password);
+  const submitLoginData = async () => {
+    var response = await Login(email, password);
     if (response === true && IsUserLoggedIn) {
       history.push("/home");
     } else {
-      console.log('error');
+      alert('Invalid Email or Password!');
     }
   }
 
@@ -28,15 +26,15 @@ export function LoginForm(props) {
   return (
     <BoxContainer>
       <FormContainer>
-        <Input type="email" placeholder="Email" value={Email} onChange={e => setEmail(e.target?.value)} />
+        <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target?.value)} />
         <Marginer direction="vertical" margin={9} />
-        <Input type="password" placeholder="Password" value={Password} onChange={e => setPassword(e.target?.value)} />
+        <Input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target?.value)} />
       </FormContainer>
 
       <Marginer direction="vertical" margin={10} />
       <MutedLink href="#">Forget your password?</MutedLink>
       <Marginer direction="vertical" margin="1.6em" />
-      <SubmitButton type="submit" onClick={getLoginData}>SignIn</SubmitButton>
+      <SubmitButton type="submit" onClick={submitLoginData}>SignIn</SubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
         Don't have an accoun?{" "}
