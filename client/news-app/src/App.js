@@ -8,6 +8,7 @@ import {
 import './App.css';
 import { AccountBox } from './Unauthenticated/index';
 import { IsUserLoggedIn } from './services/AuthService'
+import { HomePage } from "./pages/home";
 
 function App() {
 
@@ -24,7 +25,13 @@ function App() {
                 </div>
             )}
           />
-
+          <Route path="/home" exact
+            render={() => (
+              IsUserLoggedIn()
+                ?  <HomePage></HomePage>
+                : <Redirect to='/login'></Redirect>
+            )}
+          />
           <Route path="/" exact
             render={() => (
               IsUserLoggedIn()

@@ -4,20 +4,21 @@ import { Marginer } from '../marginer/index'
 import { AccountContext } from './accountContext';
 import { Login } from '../services/AuthService'
 import { IsUserLoggedIn } from '../services/AuthService'
-import {Link} from 'react-router-dom'
+import { useHistory} from 'react-router-dom'
 
 export function LoginForm(props) {
 
   const { switchToSignUp } = useContext(AccountContext);
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const history = useHistory();
 
   const getLoginData = async () => {
     console.log(Email);
     console.log(Password);
     var response = await Login(Email, Password);
     if (response === true && IsUserLoggedIn) {
-      <Link to='/home'> </Link>
+      history.push("/home");
     } else {
       console.log('error');
     }
