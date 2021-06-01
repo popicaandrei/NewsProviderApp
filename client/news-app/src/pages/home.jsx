@@ -1,16 +1,20 @@
 import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import './home.scss';
-//Responsible for background 
-
+import {GetNewsBySubject,GetHeadlines} from '../services/NewsService'
 
 
 
 export function HomePage(props) {
   const [topic, setTopic] = useState("");
   
-  const checkBySelection= async () => {
-    if (topic !== null){
+  const checkBySelection = async () => {
+    if (topic !== ""){
+      var query = {
+        category:topic
+      };
+      var data = await GetHeadlines(query);
+      console.log(data);
     }
     else{
       alert("Topic invalid!");

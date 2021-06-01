@@ -6,7 +6,7 @@ async function GetAllArticles() {
   let path = basePath + "/api/articles";
   try {
     let response = await axios.get(path, {
-      headers: { Authorization: localStorage.getItem("jwt") },
+      headers: { Authorization: localStorage.getItem("auth-token") },
     });
     return response.data;
   } catch {
@@ -18,7 +18,7 @@ async function GetArticleById(id) {
   let path = basePath + "/api/articles/" + id;
   try {
     let response = await axios.get(path, {
-      headers: { Authorization: localStorage.getItem("jwt") },
+      headers: { Authorization: localStorage.getItem("auth-token") },
     });
     return response.data;
   } catch {
@@ -36,7 +36,7 @@ async function SaveArticle(source, title, description, url) {
   };
   try {
     let response = await axios.post(path, data, {
-      headers: { Authorization: localStorage.getItem("jwt") },
+      headers: { Authorization: localStorage.getItem("auth-token") },
     });
     return response.data;
   } catch {
@@ -55,7 +55,7 @@ async function UpdateArticle(id, article) {
   };
   try {
     let response = await axios.put(path, data, {
-      headers: { Authorization: localStorage.getItem("jwt") },
+      headers: { Authorization: localStorage.getItem("auth-token") },
     });
     return response.data;
   } catch {
@@ -67,7 +67,7 @@ async function DeleteArticle(id) {
   let path = basePath + "/api/articles/" + id;
   try {
     await axios.delete(path, {
-      headers: { Authorization: localStorage.getItem("jwt") },
+      headers: { Authorization: localStorage.getItem("auth-token") },
     });
   } catch {
     console.log("Error");

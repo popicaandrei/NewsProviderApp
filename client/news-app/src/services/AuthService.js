@@ -10,7 +10,7 @@ export async function Login(email, password) {
             email: email,
             password: password
         });
-        localStorage.setItem("jwt", response?.data["auth-token"]);
+        localStorage.setItem("auth-token", response.data);
         return true;
     }
     catch (e) {
@@ -36,7 +36,7 @@ export async function Register(email, password, username) {
 }
 
 export function IsUserLoggedIn() {
-    let jwt = localStorage.getItem("jwt");
+    let jwt = localStorage.getItem("auth-token");
     if (jwt === null)
         return false;
     return true;
@@ -58,5 +58,5 @@ export function GetEmail() {
 }
 
 export function DecodeJwt() {
-    return jwt_decode(localStorage.getItem("jwt"));
+    return jwt_decode(localStorage.getItem("auth-token"));
 }

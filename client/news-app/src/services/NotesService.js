@@ -6,7 +6,7 @@ async function GetAllNotes() {
   let path = basePath + "/api/notes";
   try {
     let response = await axios.get(path, {
-      headers: { Authorization: localStorage.getItem("jwt") },
+      headers: { Authorization: localStorage.getItem("auth-token") },
     });
     return response.data;
   } catch {
@@ -18,7 +18,7 @@ async function GetNoteById(id) {
   let path = basePath + "/api/notes/" + id;
   try {
     let response = await axios.get(path, {
-      headers: { Authorization: localStorage.getItem("jwt") },
+      headers: { Authorization: localStorage.getItem("auth-token") },
     });
     return response.data;
   } catch {
@@ -34,7 +34,7 @@ async function CreateNote(title, content) {
   };
   try {
     let response = await axios.post(path, data, {
-      headers: { Authorization: localStorage.getItem("jwt") },
+      headers: { Authorization: localStorage.getItem("auth-token") },
     });
     return response.data;
   } catch {
@@ -50,7 +50,7 @@ async function UpdateNote(id, title, content) {
   };
   try {
     let response = await axios.put(path, data, {
-      headers: { Authorization: localStorage.getItem("jwt") },
+      headers: { Authorization: localStorage.getItem("auth-token") },
     });
     return response.data;
   } catch {
@@ -62,7 +62,7 @@ async function DeleteNote(id) {
   let path = basePath + "/api/notes/" + id;
   try {
     await axios.delete(path, {
-      headers: { Authorization: localStorage.getItem("jwt") },
+      headers: { Authorization: localStorage.getItem("auth-token") },
     });
   } catch {
     console.log("Error");
