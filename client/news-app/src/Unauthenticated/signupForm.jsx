@@ -9,6 +9,7 @@ const {switchToSignIn} = useContext(AccountContext)
 
 return (
     <BoxContainer>
+
     <FormContainer>
       <Input type="email" placeholder="Email" />
       <Marginer direction="vertical" margin={3} />
@@ -16,6 +17,7 @@ return (
       <Marginer direction="vertical" margin={3} />
       <Input type="password" placeholder="Password" />
     </FormContainer>
+    
     <Marginer direction="vertical" margin="1.6em" />
     <SubmitButton type="submit">SignUp</SubmitButton>
     <Marginer direction="vertical" margin="1em" />
@@ -25,5 +27,6 @@ return (
         SignIn
       </BoldLink>
     </MutedLink>
+
   </BoxContainer> );
 }

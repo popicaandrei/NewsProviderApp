@@ -5,6 +5,17 @@ import { motion } from "framer-motion"
 import { AccountContext } from "./accountContext";
 import { SignUpForm } from "./signupForm";
 
+//Responsible for background 
+const AppContainer = styled.div`
+width: 100%;
+height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background: linear-gradient(to left, #0f0c29, #302b63, #24243e);
+`
+
 //Responsible for  the box
 const BoxContainer = styled.div`
   width: 350px;
@@ -135,6 +146,7 @@ export function AccountBox(props) {
 const contextValue = {switchToSignUp,switchToSignIn};
 
     return (
+    <AppContainer>
     <AccountContext.Provider value={contextValue}>
     <BoxContainer>
         <TopContainer>
@@ -162,5 +174,6 @@ const contextValue = {switchToSignUp,switchToSignIn};
          {active === "signup" && <SignUpForm />}
         </InnerContainer>
     </BoxContainer>
-    </AccountContext.Provider>);
+    </AccountContext.Provider>
+    </AppContainer>);
 }
