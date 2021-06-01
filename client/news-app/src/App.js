@@ -1,23 +1,48 @@
-import logo from './logo.svg';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import './App.css';
+import { AccountBox } from './Unauthenticated/index';
+import { IsUserLoggedIn } from './services/AuthService'
+import { HomePage } from "./pages/home";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Switch>
+          <Route path="/login" exact
+            render={() => (
+              IsUserLoggedIn()
+                ? <Redirect to='/home'></Redirect>
+                : <div>
+                  <AccountBox></AccountBox>
+                </div>
+            )}
+          />
+          <Route path="/home" exact
+            render={() => (
+              IsUserLoggedIn()
+                ?  <HomePage></HomePage>
+                : <Redirect to='/login'></Redirect>
+            )}
+          />
+          <Route path="/" exact
+            render={() => (
+              IsUserLoggedIn()
+                ? <Redirect to='/home'></Redirect>
+                : <Redirect to='/login'></Redirect>
+            )} />
+          <Route path="*">
+            <Redirect to="/"></Redirect>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
