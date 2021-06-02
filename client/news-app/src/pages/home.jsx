@@ -67,8 +67,9 @@ export function HomePage(props) {
         </Button>
         </div>
       </div>
+      
       <div className="selectClass">
-        <h5 className="small-text">Select your topics:</h5>
+        <h5 className="small-text">Select your category:</h5>
         <select className="dropbox" value={topic} onChange={e => setTopic(e.target?.value)}>
           <option value="business">Business</option>
           <option value="entertainment">Entertainment</option>
@@ -78,18 +79,23 @@ export function HomePage(props) {
           <option value="sports">Sports</option>
           <option value="technology">Technology</option>
         </select>
-        <Button onClick={checkBySelection} variant="contained" size="small" color="primary">
-          Check
+        <Button onClick={checkBySelection} variant="contained" size="large" color="secondary">
+          Show headlines
           </Button>
-
-     
+      
       <div className="search">
-        <TextField id="standard-basic" label="Searc for topics" onChange={e => setSearch(e.target?.value)} className="text-box" />
-        <Button onClick={checkBySearch} variant="contained" size="small" color="secondary">
+        <h5 className="small-text">or search for topics:</h5>
+        <div className="text-box-container">
+        <TextField id="standard-basic" label="Search for topics" onChange={e => setSearch(e.target?.value)} className="text-box" />
+        </div>
+        <div className="btn-search">
+        <Button  onClick={checkBySearch} variant="contained" size="large" color="secondary">
           Search
           </Button>
-      </div>
+          </div>
+      
       </div> 
+      </div>
       <div className="card-grid-container">
         {news.map(x =>
           <NewsCard className="card-grid" item={x}>
