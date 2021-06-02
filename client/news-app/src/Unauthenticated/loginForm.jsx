@@ -12,7 +12,7 @@ export function LoginForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-
+ 
   const submitLoginData = async () => {
     var response = await Login(email, password);
     if (response === true && IsUserLoggedIn) {
