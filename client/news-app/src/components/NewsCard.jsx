@@ -80,7 +80,7 @@ export function NewsCard(props) {
         <Typography paragraph>
           For further read:
           </Typography>
-        <Button onClick={redirect} size="small" color="primary">
+        <Button onClick={redirect} size="small" color="primary" href="#outlined-buttons"  variant="contained">
           Go to Source
           </Button>
       </CardContent>
