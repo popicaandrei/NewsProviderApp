@@ -44,10 +44,6 @@ export function NewsCard(props) {
     window.open(props.item.url, "_blank");
   };
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   return (
     <Card className={[classes.root, props.className]}>
       <CardHeader
