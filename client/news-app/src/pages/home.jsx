@@ -57,14 +57,18 @@ export function HomePage(props) {
   return (
     <div className="container">
       <div className="header-container">
-        <h2 className="title">Hello to the news provider</h2>
-        <h2 className="title">What do you want to see today?</h2>
+        <div className="title">
+        <h2>Welcome to your news provider!</h2>
+        <h3>What do you want to see today?</h3>
+        </div>
+        <div className="logout">
         <Button onClick={logout} variant="contained" size="large" color="secondary">
           Logout
         </Button>
+        </div>
       </div>
       <div className="selectClass">
-        <h5 className="small-text">Please select topics:</h5>
+        <h5 className="small-text">Select your topics:</h5>
         <select className="dropbox" value={topic} onChange={e => setTopic(e.target?.value)}>
           <option value="business">Business</option>
           <option value="entertainment">Entertainment</option>
@@ -78,14 +82,15 @@ export function HomePage(props) {
           Check
           </Button>
 
-      </div>
+     
       <div className="search">
         <TextField id="standard-basic" label="Searc for topics" onChange={e => setSearch(e.target?.value)} className="text-box" />
         <Button onClick={checkBySearch} variant="contained" size="small" color="secondary">
           Search
           </Button>
       </div>
-      <div className="recipient">
+      </div> 
+      <div className="card-grid-container">
         {news.map(x =>
           <NewsCard className="card-grid" item={x}>
 
