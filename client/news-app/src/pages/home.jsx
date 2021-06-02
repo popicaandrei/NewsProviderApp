@@ -75,7 +75,7 @@ export function HomePage(props) {
           <option value="technology">Technology</option>
         </select>
         <Button onClick={checkBySelection} variant="contained" size="small" color="primary">
-          Search
+          Check
           </Button>
 
       </div>
