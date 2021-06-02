@@ -34,10 +34,11 @@
   justify-content: left;
   flex-direction: row;
   padding-left: 10%;
+  padding-top: 50px;
 }
 .small-text{
   color: #fff;
-  font-size: 18px;
+  font-size: 20px;
   font-family: 'Poppins';
   margin-right: 40px;
 }
@@ -64,6 +65,8 @@
   color: #fff;
   background-color: #DEF2F1;
 }
-.search-button{
-  padding-left:50px;
+
+.dropbox{
+  font-family: Arial;
+  font-size: 20px;
 }
