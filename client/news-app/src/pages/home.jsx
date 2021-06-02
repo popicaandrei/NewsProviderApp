@@ -6,17 +6,43 @@ import {NewsCard} from '../components/NewsCard'
 
 
 export function HomePage(props) {
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState("business");
   const [news, setNews] = useState([]);
-  
+  const [search, setSearch] = useState([]);
+ 
+
   const checkBySelection = async () => {
     if (topic !== ""){
       var query = {
         category:topic
       };
       var data = await GetHeadlines(query);
-      console.log(data.articles);
-      setNews(data.articles);
+      if(data !== undefined){
+        setNews(data.articles);
+      }
+      else{
+        alert("Invalid data!")
+      }
+     
+    }
+    else{
+      alert("Topic invalid!");
+    }
+    
+  }
+
+  const checkBySearch = async () => {
+    if (search !== "" && search !== undefined){
+      var query = {
+        subject:search
+      };
+      var data = await GetNewsBySubject(query);
+      if(data !== undefined){
+        setNews(data.articles);
+      }
+      else{
+        alert("Invalid data!")
+      }
     }
     else{
       alert("Topic invalid!");
@@ -45,7 +71,8 @@ export function HomePage(props) {
         </select>
         <button onClick={checkBySelection}></button>
         <div className="search">
-        <TextField id="standard-basic" label="Standard" />
+        <TextField id="standard-basic" label="Standard" onChange={e => setSearch(e.target?.value)}/>
+        <button onClick={checkBySearch}></button>
         </div>
         
         </div>

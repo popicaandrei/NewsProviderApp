@@ -49,11 +49,11 @@ export function NewsCard(props) {
   };
 
   return (
-    <Card className={[classes.root,props.className]}>
+    <Card className={[classes.root, props.className]}>
       <CardHeader
         action={
           <IconButton aria-label="settings">
-           
+
           </IconButton>
         }
         title={props.item.title}
@@ -69,35 +69,22 @@ export function NewsCard(props) {
           {props.item.description}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-       
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Source:</Typography>
-          <Typography paragraph>
-            {props.item.source.name}
-          </Typography>
-          <Typography paragraph>
+      <CardContent>
+        <Typography paragraph>Source:</Typography>
+        <Typography paragraph>
+          {props.item.source.name}
+        </Typography>
+        <Typography paragraph>
           {props.item.content}
-          </Typography>
-          <Typography paragraph>
+        </Typography>
+        <Typography paragraph>
           For further read:
           </Typography>
-           <Button onClick={redirect} size="small" color="primary">
+        <Button onClick={redirect} size="small" color="primary">
           Go to Source
           </Button>
-        </CardContent>
-      </Collapse>
+      </CardContent>
+
     </Card>
   );
 }
