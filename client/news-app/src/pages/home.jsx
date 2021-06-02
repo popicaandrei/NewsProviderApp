@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import './home.scss';
 import {GetNewsBySubject,GetHeadlines} from '../services/NewsService'
 import {NewsCard} from '../components/NewsCard'
-
+import Button from '@material-ui/core/Button';
 
 export function HomePage(props) {
   const [topic, setTopic] = useState("business");
@@ -59,7 +59,7 @@ export function HomePage(props) {
              <span className="options">See category headlines</span>
         </div>
         <div className="selectClass">
-        <h5 className="small-text">Please select topics</h5>  
+        <h5 className="small-text">Please select topics:</h5>  
         <select value={topic} onChange={e => setTopic(e.target?.value)}>
             <option value="business">Business</option>
             <option value="entertainment">Entertainment</option>
@@ -70,13 +70,15 @@ export function HomePage(props) {
             <option value="technology">Technology</option>
         </select>
         <button onClick={checkBySelection}></button>
-        <div className="search">
-        <TextField id="standard-basic" label="Standard" onChange={e => setSearch(e.target?.value)}/>
-        <button onClick={checkBySearch}></button>
-        </div>
+       
         
         </div>
-
+        <div className="search">
+        <TextField id="standard-basic" label="Searc for topics"  onChange={e => setSearch(e.target?.value)} className="text-box"/>
+        <Button onClick={checkBySearch} variant="contained" size="small" color="secondary" className="search-button">
+         Search
+          </Button>
+        </div>
         <div className="recipient">
           {news.map(x => 
            <NewsCard className="card-grid" item={x}>
